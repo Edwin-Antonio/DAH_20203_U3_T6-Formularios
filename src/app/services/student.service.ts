@@ -1,0 +1,41 @@
+import { Injectable } from '@angular/core';
+import { from } from 'rxjs';
+import { Student } from '../models/student';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class StudentService {
+
+  private students: Student[] = new Array();
+
+  constructor() {
+    this.students.push({
+      name: 'Edwin Antonio Arellano Mata',
+      controlnumer: '16400882',
+      active: true
+    });
+    this.students.push({
+      name: 'Francisco Javier Flores Herrera',
+      controlnumer: '16400999',
+      active: true
+    });
+  }
+
+  getStudents(): Student[]{
+    return this.students;
+  }
+
+  changeStatus(position: number): void{
+    this.students[position].active = !this.students[position].active;
+  }
+
+  deleteStudent(position: number): void{
+    this.students.splice(position, 1);
+  }
+
+  newStudent(student: Student): void{
+    this.students.push(student);
+  }
+}
+
